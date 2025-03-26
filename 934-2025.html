@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionnaire de Temps d'Étudiant</title>
+  <style>
+    ::selection {
+      background-color: green; /* Fond vert au lieu du bleu par défaut */
+      color: black; /* Texte noir au lieu du blanc par défaut */
+    } 
+
+    /* Pour les navigateurs WebKit (Chrome, Edge, Safari, etc.) */
+    ::-moz-selection {
+      background-color: green;
+      color: black;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #f4f4f9;
+    }
+    .container {
+      background-color: black;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-size: 1rem;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      font-size: 1rem;
+      border: 1px solid white;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .task-list {
+      margin-top: 20px;
+    }
+    .task-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .low { background-color: #dff0d8; color: black; font-weight: bold; }
+    .medium { background-color: #fcf8e3; color: black; font-weight: bold; }
+    .high { background-color: #f2dede; color: black; font-weight: bold; }
+    .task-item button {
+      background-color: #f44336;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .task-item button:hover {
+      background-color: #e53935;
+    }
+    #back-to-home {
+      position: fixed;
+      bottom: 5px;
+      width: 300px;
+      right: 5px;
+      padding: 10px 15px;
+      background-color: #2196F3;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    #back-to-home:hover {
+      background-color: #1976D2;
+    }
+  </style>
+</head>
+<body>
+    <div class="container"> 
+      <br><br><br><br><br>  
+      <h1>Tamir Manager</h1>
+        <h2>L'agenda de la 934 en 2025</h2>
+        <hr>
+        <h3><u>Jeudi 27 mars 2025</u></h3>
+        <p><B>P2 Anglais : </B>Workbook page 46</p>
+        <p><B>P4 Maths : </B>GM 29</p>
+        <br>
+        <h3><u>Vendredi 28 mars 2025</u></h3>
+        <p style="color: red;"><B>P4 Anglais : </B>Test sur le vocabulaire de l'unité 5 (seulement la page 50) et sur les pages 42 et 44</p>
+        <p style="color: green;"><B>Après-midi : </B>Sortie Justine Mettraux; Être présent à 13h45 à l'aula Geisendorf</p>
+        <br>
+        <h3><u>Lundi 31 mars 2025</u></h3>
+        <p style="color: red;"><B>P9 Français : </B>Évaluation sur les verbes "vouloir", "placer", "acheter" et sur l'utilisation des temps</p>
+        <br>
+        <h3><u>Mardi 1 avril 2025</u></h3>
+        <p style="color: red;"><B>P10 Histoire : </B>Évaluation sur la démocratie et les institutions dans l'Athènes antique et dans la Genève contemporaine (Suisse); Champ donné sur une feuille apart</p>
+        <br>
+        <h3><u>Mercedi 2 avril 2025</u></h3>
+        <p style="color: red;"><B>P4 Biologie : </B>Évaluation sur la séquence 21 (champ donné sur une feuille apart)</p>
+        <br>
+        <h3><u>Vendredi 4 avril 2025</u></h3>
+        <p style="color: red;"><B>P4 Anglais : </B>Évaluation sur l'unité 5 (grammaire sur les verbes au passé et vocabulaire)</p>
+        <br>
+        <h3><u>Lundi 7 avril 2025</u></h3>
+        <p style="color: red;"><B>P2 Allemand : </B>Récitation sur le vocabulaire de l'unité 5</p>
+        <p style="color: red;"><B>P5 Latin : </B>Épreuve sur le chapitre 5 (Monstrum I) : Prométhée, Épiméthée et Pandore pages 144-147 + chapitre 6 (Monstrum II) : Persée et Méduse pages 27-30 et locutions latines pages 31-32</p>
+        <br>
+        <hr>
+        <br>
+        <strong>©Tamir Sakhawat, alias TheSilentHack</strong>
+        <br><br><br>
+      </div>
+
+      <button id="back-to-home" onclick="goToHome()">Revenir à l'accueil</button>
+
+    <script>
+      let editingTask = null;
+  
+      document.addEventListener("DOMContentLoaded", loadTasks);
+  
+      function goToHome() {
+        window.location.href = "tamir-manager.html"; // Remplacez "index.html" par l'URL de votre page d'accueil
+      }
+
+      function addTask() {
+        const taskName = document.getElementById('task-name').value;
+        const taskDate = document.getElementById('task-date').value;
+        const taskTime = document.getElementById('task-time').value;
+        const taskPriority = document.getElementById('task-priority').value;
+  
+        if (!taskName || !taskDate || !taskTime) {
+          alert("Veuillez remplir tous les champs !");
+          return;
+        }
+  
+        const task = { name: taskName, date: taskDate, time: taskTime, priority: taskPriority };
+  
+        if (editingTask) {
+          updateTask(task);
+        } else {
+          saveTask(task);
+          displayTask(task);
+        }
+  
+        document.getElementById('task-name').value = "";
+        document.getElementById('task-date').value = "";
+        document.getElementById('task-time').value = "";
+        document.getElementById('task-priority').value = "low";
+        editingTask = null;
+      }
+  
+      function displayTask(task) {
+        const taskItem = document.createElement('div');
+        taskItem.classList.add('task-item', task.priority);
+  
+        const taskContent = document.createElement('div');
+        taskContent.innerHTML = `<strong>${task.name}</strong><br>Date: ${task.date} <br> Heure: ${task.time}`;
+  
+        const editButton = document.createElement('button');
+        editButton.textContent = "Modifier";
+        editButton.onclick = function () {
+          editTask(task, taskItem);
+        };
+  
+        const saveButton = document.createElement('button');
+        saveButton.textContent = "Sauvegarder";
+        saveButton.style.display = "none";
+        saveButton.onclick = function () {
+          saveButton.style.display = "none";
+          editButton.style.display = "block";
+          addTask();
+        };
+  
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = "Supprimer";
+        deleteButton.onclick = function () {
+          taskItem.remove();
+          removeTask(task);
+        };
+  
+        taskItem.appendChild(taskContent);
+        taskItem.appendChild(editButton);
+        taskItem.appendChild(saveButton);
+        taskItem.appendChild(deleteButton);
+        document.getElementById('task-list').appendChild(taskItem);
+      }
+  
+      function editTask(task, taskItem) {
+        document.getElementById('task-name').value = task.name;
+        document.getElementById('task-date').value = task.date;
+        document.getElementById('task-time').value = task.time;
+        document.getElementById('task-priority').value = task.priority;
+  
+        editingTask = task;
+        
+        const editButton = taskItem.querySelector("button:nth-child(2)");
+        const saveButton = taskItem.querySelector("button:nth-child(3)");
+        
+        editButton.style.display = "none";
+        saveButton.style.display = "block";
+      }
+  
+      function saveTask(task) {
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks.push(task);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+  
+      function updateTask(task) {
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks = tasks.map(t => (t.name === editingTask.name ? task : t));
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        location.reload();
+      }
+  
+      function removeTask(task) {
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks = tasks.filter(t => t.name !== task.name);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+  
+      function loadTasks() {
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks.forEach(displayTask);
+      }
+    </script>
+  </body>
+  </html>

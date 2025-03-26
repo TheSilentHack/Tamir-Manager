@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionnaire de Temps d'Étudiant</title>
+  <style>
+    ::selection {
+      background-color: lightblue; /* Fond vert au lieu du bleu par défaut */
+      color: black; /* Texte noir au lieu du blanc par défaut */
+    } 
+
+    /* Pour les navigateurs WebKit (Chrome, Edge, Safari, etc.) */
+    ::-moz-selection {
+      background-color: lightblue;
+      color: black;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #f4f4f9;
+    }
+    .container {
+      background-color: black;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    h2 {
+      text-align: center;
+    }
+    h3 {
+      text-align: center;
+    }
+    h4 {
+      text-align: center;
+    }
+    h5 {
+      text-align: center;
+    }
+    h6 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-size: 1rem;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      font-size: 1rem;
+      border: 1px solid white;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .task-list {
+      margin-top: 20px;
+    }
+    .task-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .low { background-color: #dff0d8; color: black; font-weight: bold; }
+    .medium { background-color: #fcf8e3; color: black; font-weight: bold; }
+    .high { background-color: #f2dede; color: black; font-weight: bold; }
+    .task-item button {
+      background-color: #f44336;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .task-item button:hover {
+      background-color: #e53935;
+    }
+    #view-agenda {
+      position: fixed;
+      bottom: 5px;
+      width: 300px;
+      right: 5px;
+      background-color: #2196F3;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    #view-agenda:hover {
+      background-color: #1976D2;
+    }
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .footer a {
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: bold;
+      left: 10px;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Tamir Manager</h1>
+    <h2>Un Gestionnaire de Temps d'Étudiant</h2>
+    <hr>
+
+    <div class="form-group">
+      <label for="task-name">Nom de la tâche</label>
+      <input type="text" id="task-name" placeholder="Devoir, révision, etc." />
+    </div>
+
+    <div class="form-group">
+      <label for="task-date">Date d'échéance</label>
+      <input type="date" id="task-date" />
+    </div>
+
+    <div class="form-group">
+      <label for="task-time">Heure d'échéance</label>
+      <input type="time" id="task-time" />
+    </div>
+
+    <div class="form-group">
+      <label for="task-priority">Priorité</label>
+      <select id="task-priority">
+        <option value="low">Faible</option>
+        <option value="medium">Moyenne</option>
+        <option value="high">Élevée</option>
+      </select>
+    </div>
+
+    <button onclick="addTask()">Ajouter Tâche</button>
+
+    <div class="task-list" id="task-list"></div>
+    <hr>
+    <br>
+    <strong>©Tamir Sakhawat, alias TheSilentHack</strong>
+  </div>
+
+  <script>
+    let editingTask = null;
+
+    document.addEventListener("DOMContentLoaded", loadTasks);
+
+    function goToAgenda() {
+      window.location.href = "934-2025.html"; 
+    }
+
+    function addTask() {
+      const taskName = document.getElementById('task-name').value;
+      const taskDate = document.getElementById('task-date').value;
+      const taskTime = document.getElementById('task-time').value;
+      const taskPriority = document.getElementById('task-priority').value;
+
+      if (!taskName || !taskDate || !taskTime) {
+        alert("Veuillez remplir tous les champs !");
+        return;
+      }
+
+      const task = { name: taskName, date: taskDate, time: taskTime, priority: taskPriority };
+
+      if (editingTask) {
+        updateTask(task);
+      } else {
+        saveTask(task);
+        displayTask(task);
+      }
+
+      document.getElementById('task-name').value = "";
+      document.getElementById('task-date').value = "";
+      document.getElementById('task-time').value = "";
+      document.getElementById('task-priority').value = "low";
+      editingTask = null;
+    }
+
+    function displayTask(task) {
+      const taskItem = document.createElement('div');
+      taskItem.classList.add('task-item', task.priority);
+
+      const taskContent = document.createElement('div');
+      taskContent.innerHTML = `<strong>${task.name}</strong><br>Date: ${task.date} <br> Heure: ${task.time}`;
+
+      const editButton = document.createElement('button');
+      editButton.textContent = "Modifier";
+      editButton.onclick = function () {
+        editTask(task, taskItem);
+      };
+
+      const saveButton = document.createElement('button');
+      saveButton.textContent = "Sauvegarder";
+      saveButton.style.display = "none";
+      saveButton.onclick = function () {
+        saveButton.style.display = "none";
+        editButton.style.display = "block";
+        addTask();
+      };
+
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = "Supprimer";
+      deleteButton.onclick = function () {
+        taskItem.remove();
+        removeTask(task);
+      };
+
+      taskItem.appendChild(taskContent);
+      taskItem.appendChild(editButton);
+      taskItem.appendChild(saveButton);
+      taskItem.appendChild(deleteButton);
+      document.getElementById('task-list').appendChild(taskItem);
+    }
+
+    function editTask(task, taskItem) {
+      document.getElementById('task-name').value = task.name;
+      document.getElementById('task-date').value = task.date;
+      document.getElementById('task-time').value = task.time;
+      document.getElementById('task-priority').value = task.priority;
+
+      editingTask = task;
+      
+      const editButton = taskItem.querySelector("button:nth-child(2)");
+      const saveButton = taskItem.querySelector("button:nth-child(3)");
+      
+      editButton.style.display = "none";
+      saveButton.style.display = "block";
+    }
+
+    function saveTask(task) {
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      tasks.push(task);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    function updateTask(task) {
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      tasks = tasks.map(t => (t.name === editingTask.name ? task : t));
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      location.reload();
+    }
+
+    function removeTask(task) {
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      tasks = tasks.filter(t => t.name !== task.name);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    function loadTasks() {
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      tasks.forEach(displayTask);
+    }
+  </script>
+  <!-- Bouton "Consulter l'agenda de la 934" -->
+<button id="view-agenda" onclick="goToAgenda()">Consulter l'agenda de la 934</button>
+</body>
+</html>
