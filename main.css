@@ -1,0 +1,135 @@
+::selection {
+    background-color: lightblue; /* Fond vert au lieu du bleu par défaut */
+    color: black; /* Texte noir au lieu du blanc par défaut */
+  } 
+
+  /* Pour les navigateurs WebKit (Chrome, Edge, Safari, etc.) */
+  ::-moz-selection {
+    background-color: lightblue;
+    color: black;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #f4f4f9;
+  }
+  .container {
+    background-color: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  h2 {
+    text-align: center;
+  }
+  h3 {
+    text-align: center;
+  }
+  h4 {
+    text-align: center;
+  }
+  h5 {
+    text-align: center;
+  }
+  h6 {
+    text-align: center;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  label {
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+  }
+  input, select {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid white;
+    border-radius: 4px;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  .task-list {
+    margin-top: 20px;
+  }
+  .task-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .low { background-color: #dff0d8; color: black; font-weight: bold; }
+  .medium { background-color: #fcf8e3; color: black; font-weight: bold; }
+  .high { background-color: #f2dede; color: black; font-weight: bold; }
+  .task-item button {
+    background-color: #f44336;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .task-item button:hover {
+    background-color: #e53935;
+  }
+  #view-agenda {
+    position: fixed;
+    bottom: 5px;
+    width: 300px;
+    right: 5px;
+    background-color: #2196F3;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  #view-agenda:hover {
+    background-color: #1976D2;
+  }
+  .footer {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .footer a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+    left: 10px;
+  }
+  .footer a:hover {
+    text-decoration: underline;
+  }
