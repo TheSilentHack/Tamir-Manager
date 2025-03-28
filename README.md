@@ -1,6 +1,6 @@
 # Tamir Manager - Gestionnaire de Temps d'Étudiant
 
-**Tamir Manager** est une application web simple et intuitive conçue pour aider les étudiants de la classe **934** à organiser leurs tâches et à consulter leur agenda. Ce projet est développé en HTML, CSS et JavaScript, et utilise le stockage local du navigateur pour sauvegarder les tâches.
+**Tamir Manager** est une application web simple et intuitive lancée le vendredi 28.03.2025 et conçue pour aider les étudiants à organiser leurs tâches et à consulter leur agenda (uniquement pour la 934 en 2025). Ce projet est développé en HTML, CSS et JavaScript, et utilise le stockage local du navigateur pour sauvegarder les tâches.
 
 ## Fonctionnalités
 
