@@ -1,4 +1,25 @@
-::selection {
+  .header {
+    text-align: center;
+    background: linear-gradient(135deg, #007BFF, #00C6FF);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .header h1 {
+    margin: 0;
+      font-size: 2.5em;
+    font-weight: bold;
+  }
+
+  .header h2 {
+    margin: 5px 0 0;
+    font-size: 1.5em;
+    font-weight: lighter;
+    opacity: 0.9;
+  }
+  ::selection {
     background-color: lightblue; /* Fond vert au lieu du bleu par défaut */
     color: black; /* Texte noir au lieu du blanc par défaut */
   } 
