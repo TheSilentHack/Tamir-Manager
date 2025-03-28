@@ -1,24 +1,28 @@
-  .header {
-    text-align: center;
-    background: linear-gradient(135deg, #007BFF, #00C6FF);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 2px solid #007BFF;
+  z-index: 1000;
+}
 
-  .header h1 {
-    margin: 0;
-      font-size: 2.5em;
-    font-weight: bold;
-  }
+.header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: bold;
+}
 
-  .header h2 {
-    margin: 5px 0 0;
-    font-size: 1.5em;
-    font-weight: lighter;
-    opacity: 0.9;
-  }
+.header h2 {
+  margin: 5px 0 0;
+  font-size: 1.5em;
+  font-weight: lighter;
+  opacity: 0.9;
+}
   ::selection {
     background-color: lightblue; /* Fond vert au lieu du bleu par défaut */
     color: black; /* Texte noir au lieu du blanc par défaut */
@@ -30,6 +34,7 @@
     color: black;
   }
   body {
+    padding-top: 80px; /* Pour éviter que le contenu soit caché sous le header */
     font-family: Arial, sans-serif;
     background-color: black;
     margin: 0;
