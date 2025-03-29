@@ -37,7 +37,7 @@
 2. Consultez les devoirs, évaluations et événements importants pour la classe **934**.
 
 ### 3. Navigation entre les pages
-- Depuis la page principale (`index.html`), ajoutez un bouton pour accéder à l'agenda.
+- Depuis la page principale (`index.html`), cliquez le bouton en bas à droite pour accéder à l'agenda.
 - Depuis la page de l'agenda (`934-2025.html`), utilisez le bouton **Revenir à l'accueil** pour retourner à la gestion des tâches.
 
 ## Technologies utilisées
